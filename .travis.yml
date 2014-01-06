@@ -1,0 +1,24 @@
+language: ruby
+rvm:
+- 2.0.0-p353
+- jruby-1.7.9
+before_script:
+bundler_args: --local --binstubs --without development
+cache: bundler
+before_install:
+- git submodule update --init --recursive
+branches:
+  only:
+  - master
+env:
+  global:
+    - RUBY_HEAP_MIN_SLOTS=4500000
+    - RUBY_HEAP_FREE_MIN=45000
+    - RUBY_GC_MALLOC_LIMIT=100000000
+notifications:
+  email: false
+git:
+  depth: 35
+addons:
+  code_climate:
+    repo_token:
